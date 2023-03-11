@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>SitioMovil</display-name>
+  <welcome-file-list>
+    <welcome-file>Login</welcome-file>
+  </welcome-file-list>
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/htmls/error404.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>javax.servlet.ServletException</exception-type>
+  	<location>/htmls/error500.jsp</location>
+  </error-page>
+  <error-page>
+  	<exception-type>java.lang.Throwable</exception-type>
+  	<location>/htmls/error.jsp</location>
+  </error-page>
+    <context-param>
+      <param-name>imagenesControllerURL</param-name>
+      <param-value>http://localhost:9101/publicador?wsdl</param-value>
+    </context-param>
+    <context-param>
+      <param-name>actividadesControllerURL</param-name>
+      <param-value>http://localhost:9102/publicador?wsdl</param-value>
+    </context-param>
+    <context-param>
+      <param-name>salidasControllerURL</param-name>
+      <param-value>http://localhost:9103/publicador?wsdl</param-value>
+    </context-param>
+    <context-param>
+      <param-name>departamentosControllerURL</param-name>
+      <param-value>http://localhost:9104/publicador?wsdl</param-value>
+    </context-param>
+    <context-param>
+      <param-name>usuarioControllerURL</param-name>
+      <param-value>http://localhost:9105/publicador?wsdl</param-value>
+    </context-param>
+  <context-param>
+    <param-name>defaultImgAct</param-name>
+    <param-value>default_actividades.jpg</param-value>
+  </context-param>
+  <context-param>
+    <param-name>defaultImgUser</param-name>
+    <param-value>default_usuario.png</param-value>
+  </context-param>
+  
+  <filter>
+	<filter-name>RedirectFilter</filter-name>
+	<filter-class>filters.RedirectFilter</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>RedirectFilter</filter-name>
+	<url-pattern>/*</url-pattern>	
+  </filter-mapping>
+  
+  <filter>
+	<filter-name>AuthenticationFilter</filter-name>
+	<filter-class>filters.AuthenticationFilter</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>AuthenticationFilter</filter-name>
+	<url-pattern>/*</url-pattern>	
+  </filter-mapping>  
+   
+  <filter>
+	<filter-name>VisitsCounterFilter</filter-name>
+	<filter-class>filters.VisitsCounterFilter</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>VisitsCounterFilter</filter-name>
+	<url-pattern>/*</url-pattern>	
+  </filter-mapping>
+</web-app>
